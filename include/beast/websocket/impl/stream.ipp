@@ -185,8 +185,10 @@ build_response(http::request<Body, Fields> const& req)
     {
         auto const key =
             req.fields["Sec-WebSocket-Key"];
-        res.fields.insert("Sec-WebSocket-Accept",
-            detail::make_sec_ws_accept(key));
+
+        std::string const name  = "Sec-WebSocket-Accept";
+        std::string const value = detail::make_sec_ws_accept(key);
+        res.fields.insert(name, value);
     }
     res.fields.replace("Server", "Beast.WSProto");
     d_(res);

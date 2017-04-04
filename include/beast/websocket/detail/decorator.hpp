@@ -101,8 +101,9 @@ private:
     void
     operator()(request_type& req, std::false_type) const
     {
-        req.fields.replace("User-Agent",
-            std::string{"Beast/"} + BEAST_VERSION_STRING);
+        std::string const name  = "User-Agent";
+        std::string const value = std::string{"Beast/"} + BEAST_VERSION_STRING;
+        req.fields.replace(name, value);
     }
 
     void
@@ -114,8 +115,9 @@ private:
     void
     operator()(response_type& res, std::false_type) const
     {
-        res.fields.replace("Server",
-            std::string{"Beast/"} + BEAST_VERSION_STRING);
+        std::string const name  = "Server";
+        std::string const value = std::string{"Beast/"} + BEAST_VERSION_STRING;
+        res.fields.replace(name, value);
     }
 };
 

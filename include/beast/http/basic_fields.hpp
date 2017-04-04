@@ -263,7 +263,8 @@ public:
         ! std::is_constructible<boost::string_ref, T>::value>::type
     insert(boost::string_ref name, T const& value)
     {
-        insert(name, boost::lexical_cast<std::string>(value));
+        std::string const value_str{boost::lexical_cast<std::string>(value)};
+        insert(name, value_str);
     }
 
     /** Replace a field value.
